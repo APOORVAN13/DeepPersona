@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Upload - Outlighn Pvt Ltd</title>
+</head>
+<body>
+    <h2>Upload Your Resume</h2>
+    <p>Please upload your updated resume in PDF or DOCX format.</p>
+
+    {% if message %}
+        <p style="color: green;">{{ message }}</p>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="resume" accept=".pdf,.doc,.docx" required><br><br>
+        <button type="submit">Upload Resume</button>
+    </form>
+
+    <p><small>This page is part of a phishing awareness simulation. No real data is collected or used.</small></p>
+</body>
+</html>

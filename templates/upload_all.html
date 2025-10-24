@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload All Documents – Outlighn Pvt Ltd</title>
+</head>
+<body>
+    <h2>Upload Your Documents</h2>
+    <p>Please upload all relevant documents for HR onboarding.</p>
+
+    {% if message %}
+        <p style="color: green;">{{ message }}</p>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <label>Resume (PDF/DOCX):</label><br>
+        <input type="file" name="resume" accept=".pdf,.doc,.docx"><br><br>
+
+        <label>Government ID (Aadhaar/PAN/Passport):</label><br>
+        <input type="file" name="id_proof" accept=".pdf,.jpg,.png"><br><br>
+
+        <label>Relieving Letter / Internship Certificate:</label><br>
+        <input type="file" name="relieve_letter" accept=".pdf,.jpg,.png"><br><br>
+
+        <label>Passport-size Photograph:</label><br>
+        <input type="file" name="photo" accept=".jpg,.jpeg,.png"><br><br>
+
+        <button type="submit">Upload All</button>
+    </form>
+
+    <hr>
+    <p><small>This is a phishing simulation for cybersecurity training. No personal data is collected or processed.</small></p>
+</body>
+</html>

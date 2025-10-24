@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <title>DeepPersona HR Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 30px;
+        background-color: #f9f9f9;
+      }
+
+      h2 {
+        color: #333;
+      }
+
+      #chat {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 15px;
+        height: 400px;
+        width: 100%;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        white-space: pre-wrap;
+      }
+
+      #msg {
+        width: 70%;
+        padding: 10px;
+        font-size: 16px;
+      }
+
+      button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>DeepPersona HR Chat Demo</h2>
+
+    <div id="chat"></div>
+
+    <input id="msg" placeholder="Type a message" />
+    <button onclick="send()">Send</button>
+
+    <script>
+      async function send() {
+        const text = document.getElementById('msg').value;
+        const res = await fetch('/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ user_id: 'demo', message: text })
+        });
+
+        const j = await res.json();
+
+        // Create and append new chat entry
+        const chatBox = document.getElementById('chat');
+        const userMsg = document.createElement('div');
+        userMsg.innerHTML = `<strong>User:</strong> ${text}`;
+        chatBox.appendChild(userMsg);
+
+        const botMsg = document.createElement('div');
+        botMsg.innerHTML = `<strong>Bot:</strong> ${j.reply}`;
+        chatBox.appendChild(botMsg);
+
+        if (j.mock_link && j.mock_link !== "null") {
+          const linkMsg = document.createElement('div');
+          linkMsg.innerHTML = `<em>[Mock Link]</em> <a href="${j.mock_link}" target="_blank">${j.mock_link}</a>`;
+          chatBox.appendChild(linkMsg);
+        }
+
+        // Auto-scroll to bottom
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Clear input
+        document.getElementById('msg').value = '';
+      }
+    </script>
+  </body>
+</html>

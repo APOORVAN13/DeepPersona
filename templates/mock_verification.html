@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Outlighn Pvt Ltd – Identity Verification</title>
+</head>
+<body>
+    <h2>Verify Your Identity</h2>
+    <p>Before we finalize your application, we require basic ID verification.</p>
+
+    {% if message %}
+        <p style="color: green;">{{ message }}</p>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <label for="idtype">Select ID Type:</label>
+        <select id="idtype" name="idtype">
+            <option value="aadhar">Aadhaar Card</option>
+            <option value="passport">Passport</option>
+            <option value="pan">PAN Card</option>
+        </select>
+        <br><br>
+
+        <label for="upload">Upload ID (PDF or Image):</label>
+        <input type="file" id="upload" name="upload" accept=".pdf,.jpg,.jpeg,.png" required>
+        <br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <hr>
+    <p><small>This is a simulated phishing environment for demonstration purposes. No IDs are collected or processed.</small></p>
+</body>
+</html>
